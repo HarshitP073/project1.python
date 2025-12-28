@@ -29,23 +29,43 @@ def median(lst):
                lst[k]=lst[k+1]
                lst[k+1]=temp
       if(p%2!=0):
-         med=(p+1)/2
+         med=(p+1)//2
          print("the median : ",lst[med-1]) 
       else:
          med=p/2
          med2=p/2+1
          print("the median : ",(lst[med-1]+lst[med2-1])/2)           
         
-def mode(lst):
-     
+def mode(lst):  
+    if len(lst) == 0:
+        print("No mode, list is empty")
+        return
+
+    freq = {}
+    for num in lst:
+        freq[num] = freq.get(num, 0) + 1
+
+    max_freq = max(freq.values())
+    modes = []
+
+    for key in freq:
+        if freq[key] == max_freq:
+            modes.append(key)
+
+    if len(modes) == len(lst):
+        print("No mode (all values appear equally)")
+    else:
+        print("Mode:", modes)
+
 
 
 
 
 print("ENTER THE NUMBER : ")
-lst=list(map(float,input().split()))   
+lst=list(map(int,input().split()))   
 mean(lst)
 median(lst)
+mode(lst)
 
 
 
